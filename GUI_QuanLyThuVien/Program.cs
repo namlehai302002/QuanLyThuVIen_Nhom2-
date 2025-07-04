@@ -1,25 +1,23 @@
-﻿using GUI_QuanLyThuVien;
+﻿// Program.cs
+using GUI_QuanLyThuVien;
 
 namespace Nhom2_QuanLyThuVien
 {
     internal static class Program
     {
-        /// <summary>
-        ///  The main entry point for the application.
-        /// </summary>
         [STAThread]
         static void Main()
         {
             ApplicationConfiguration.Initialize();
 
-            // Mở frmWelcome dưới dạng modal (ShowDialog)
+            // Mở form Welcome (không kiểm tra DialogResult)
             using (var welcomeForm = new frmWelcome())
             {
                 welcomeForm.ShowDialog();
             }
 
-            // Sau khi frmWelcome đóng thì mở frmLogin
-            Application.Run(new frmMainForm());
+            // Mở form đăng nhập
+            Application.Run(new frmLogin());
         }
     }
 }
