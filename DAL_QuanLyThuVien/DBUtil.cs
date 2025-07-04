@@ -11,7 +11,7 @@ namespace DAL_QUANLYTHUVIEN
 {
     public class DBUtil
     {
-        public static string connString = @"Data Source=DESKTOP-5MEOV6J\SQLEXPRESS03;Initial Catalog=Xuong_QuanLyThuVien;Integrated Security=True;Trust Server Certificate=True";
+        public static string connString = @"Data Source=HAHAHA\SQLEXPRESS;Initial Catalog=Xuong_QuanLyThuVien;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
 
         public static SqlCommand GetCommand(string sql, List<Object> args, CommandType cmdType)
         {
