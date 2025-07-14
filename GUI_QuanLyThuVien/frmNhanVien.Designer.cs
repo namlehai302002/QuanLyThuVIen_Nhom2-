@@ -125,10 +125,11 @@
             guna2Panel2.Controls.Add(guna2HtmlLabel1);
             guna2Panel2.CustomizableEdges = customizableEdges29;
             guna2Panel2.Dock = DockStyle.Fill;
-            guna2Panel2.Location = new Point(0, 445);
+            guna2Panel2.Location = new Point(0, 362);
+            guna2Panel2.Margin = new Padding(2, 2, 2, 2);
             guna2Panel2.Name = "guna2Panel2";
             guna2Panel2.ShadowDecoration.CustomizableEdges = customizableEdges30;
-            guna2Panel2.Size = new Size(1413, 358);
+            guna2Panel2.Size = new Size(1130, 280);
             guna2Panel2.TabIndex = 3;
             // 
             // txtTimKiem
@@ -142,14 +143,14 @@
             txtTimKiem.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtTimKiem.Font = new Font("Segoe UI", 9F);
             txtTimKiem.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtTimKiem.Location = new Point(894, 21);
-            txtTimKiem.Margin = new Padding(4, 5, 4, 5);
+            txtTimKiem.Location = new Point(715, 17);
+            txtTimKiem.Margin = new Padding(3, 4, 3, 4);
             txtTimKiem.Name = "txtTimKiem";
             txtTimKiem.PasswordChar = '\0';
             txtTimKiem.PlaceholderText = "";
             txtTimKiem.SelectedText = "";
             txtTimKiem.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            txtTimKiem.Size = new Size(515, 38);
+            txtTimKiem.Size = new Size(412, 30);
             txtTimKiem.TabIndex = 22;
             // 
             // btnTimKiem
@@ -162,10 +163,11 @@
             btnTimKiem.Font = new Font("Segoe UI", 9F);
             btnTimKiem.ForeColor = Color.White;
             btnTimKiem.Image = Properties.Resources.Kinhlup;
-            btnTimKiem.Location = new Point(824, 21);
+            btnTimKiem.Location = new Point(659, 17);
+            btnTimKiem.Margin = new Padding(2, 2, 2, 2);
             btnTimKiem.Name = "btnTimKiem";
             btnTimKiem.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            btnTimKiem.Size = new Size(63, 38);
+            btnTimKiem.Size = new Size(50, 30);
             btnTimKiem.TabIndex = 21;
             btnTimKiem.Click += btnTimKiem_Click;
             // 
@@ -181,10 +183,11 @@
             btnXoa.Font = new Font("Segoe UI", 9F);
             btnXoa.ForeColor = Color.White;
             btnXoa.Image = Properties.Resources.bin;
-            btnXoa.Location = new Point(1200, 216);
+            btnXoa.Location = new Point(960, 173);
+            btnXoa.Margin = new Padding(2, 2, 2, 2);
             btnXoa.Name = "btnXoa";
             btnXoa.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            btnXoa.Size = new Size(145, 41);
+            btnXoa.Size = new Size(116, 33);
             btnXoa.TabIndex = 20;
             btnXoa.Text = " Xóa";
             btnXoa.Click += btnXoa_Click;
@@ -200,10 +203,11 @@
             btnLamMoi.Font = new Font("Segoe UI", 9F);
             btnLamMoi.ForeColor = Color.White;
             btnLamMoi.Image = Properties.Resources.reload;
-            btnLamMoi.Location = new Point(1023, 216);
+            btnLamMoi.Location = new Point(818, 173);
+            btnLamMoi.Margin = new Padding(2, 2, 2, 2);
             btnLamMoi.Name = "btnLamMoi";
             btnLamMoi.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            btnLamMoi.Size = new Size(145, 43);
+            btnLamMoi.Size = new Size(116, 34);
             btnLamMoi.TabIndex = 19;
             btnLamMoi.Text = " Làm Mới";
             btnLamMoi.Click += btnLamMoi_Click;
@@ -219,10 +223,11 @@
             btnSua.Font = new Font("Segoe UI", 9F);
             btnSua.ForeColor = Color.White;
             btnSua.Image = Properties.Resources.service;
-            btnSua.Location = new Point(1200, 114);
+            btnSua.Location = new Point(960, 91);
+            btnSua.Margin = new Padding(2, 2, 2, 2);
             btnSua.Name = "btnSua";
             btnSua.ShadowDecoration.CustomizableEdges = customizableEdges10;
-            btnSua.Size = new Size(145, 43);
+            btnSua.Size = new Size(116, 34);
             btnSua.TabIndex = 18;
             btnSua.Text = " Sửa";
             btnSua.Click += btnSua_Click;
@@ -238,10 +243,11 @@
             btnThem.Font = new Font("Segoe UI", 9F);
             btnThem.ForeColor = Color.White;
             btnThem.Image = Properties.Resources.plus_symbol_button;
-            btnThem.Location = new Point(1023, 114);
+            btnThem.Location = new Point(818, 91);
+            btnThem.Margin = new Padding(2, 2, 2, 2);
             btnThem.Name = "btnThem";
             btnThem.ShadowDecoration.CustomizableEdges = customizableEdges12;
-            btnThem.Size = new Size(145, 43);
+            btnThem.Size = new Size(116, 34);
             btnThem.TabIndex = 17;
             btnThem.Text = " Thêm";
             btnThem.Click += btnThem_Click;
@@ -253,12 +259,13 @@
             dtpNgayTao.CustomizableEdges = customizableEdges13;
             dtpNgayTao.Font = new Font("Segoe UI", 9F);
             dtpNgayTao.Format = DateTimePickerFormat.Custom;
-            dtpNgayTao.Location = new Point(104, 301);
+            dtpNgayTao.Location = new Point(83, 241);
+            dtpNgayTao.Margin = new Padding(2, 2, 2, 2);
             dtpNgayTao.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
             dtpNgayTao.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
             dtpNgayTao.Name = "dtpNgayTao";
             dtpNgayTao.ShadowDecoration.CustomizableEdges = customizableEdges14;
-            dtpNgayTao.Size = new Size(456, 38);
+            dtpNgayTao.Size = new Size(365, 30);
             dtpNgayTao.TabIndex = 16;
             dtpNgayTao.Value = new DateTime(2025, 6, 25, 13, 37, 42, 472);
             // 
@@ -273,14 +280,14 @@
             txtTen.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtTen.Font = new Font("Segoe UI", 9F);
             txtTen.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtTen.Location = new Point(104, 124);
-            txtTen.Margin = new Padding(4, 5, 4, 5);
+            txtTen.Location = new Point(83, 99);
+            txtTen.Margin = new Padding(3, 4, 3, 4);
             txtTen.Name = "txtTen";
             txtTen.PasswordChar = '\0';
             txtTen.PlaceholderText = "";
             txtTen.SelectedText = "";
             txtTen.ShadowDecoration.CustomizableEdges = customizableEdges16;
-            txtTen.Size = new Size(456, 38);
+            txtTen.Size = new Size(365, 30);
             txtTen.TabIndex = 15;
             // 
             // txtEmail
@@ -294,14 +301,14 @@
             txtEmail.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtEmail.Font = new Font("Segoe UI", 9F);
             txtEmail.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtEmail.Location = new Point(104, 181);
-            txtEmail.Margin = new Padding(4, 5, 4, 5);
+            txtEmail.Location = new Point(83, 145);
+            txtEmail.Margin = new Padding(3, 4, 3, 4);
             txtEmail.Name = "txtEmail";
             txtEmail.PasswordChar = '\0';
             txtEmail.PlaceholderText = "";
             txtEmail.SelectedText = "";
             txtEmail.ShadowDecoration.CustomizableEdges = customizableEdges18;
-            txtEmail.Size = new Size(456, 38);
+            txtEmail.Size = new Size(365, 30);
             txtEmail.TabIndex = 14;
             // 
             // txtMatKhau
@@ -315,14 +322,14 @@
             txtMatKhau.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtMatKhau.Font = new Font("Segoe UI", 9F);
             txtMatKhau.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtMatKhau.Location = new Point(104, 230);
-            txtMatKhau.Margin = new Padding(4, 5, 4, 5);
+            txtMatKhau.Location = new Point(83, 184);
+            txtMatKhau.Margin = new Padding(3, 4, 3, 4);
             txtMatKhau.Name = "txtMatKhau";
             txtMatKhau.PasswordChar = '\0';
             txtMatKhau.PlaceholderText = "";
             txtMatKhau.SelectedText = "";
             txtMatKhau.ShadowDecoration.CustomizableEdges = customizableEdges20;
-            txtMatKhau.Size = new Size(456, 38);
+            txtMatKhau.Size = new Size(365, 30);
             txtMatKhau.TabIndex = 13;
             // 
             // txtSDT
@@ -336,14 +343,14 @@
             txtSDT.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtSDT.Font = new Font("Segoe UI", 9F);
             txtSDT.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtSDT.Location = new Point(636, 296);
-            txtSDT.Margin = new Padding(4, 5, 4, 5);
+            txtSDT.Location = new Point(509, 237);
+            txtSDT.Margin = new Padding(3, 4, 3, 4);
             txtSDT.Name = "txtSDT";
             txtSDT.PasswordChar = '\0';
             txtSDT.PlaceholderText = "";
             txtSDT.SelectedText = "";
             txtSDT.ShadowDecoration.CustomizableEdges = customizableEdges22;
-            txtSDT.Size = new Size(334, 38);
+            txtSDT.Size = new Size(267, 30);
             txtSDT.TabIndex = 12;
             // 
             // txtMaNV
@@ -357,14 +364,14 @@
             txtMaNV.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtMaNV.Font = new Font("Segoe UI", 9F);
             txtMaNV.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtMaNV.Location = new Point(104, 69);
-            txtMaNV.Margin = new Padding(4, 5, 4, 5);
+            txtMaNV.Location = new Point(83, 55);
+            txtMaNV.Margin = new Padding(3, 4, 3, 4);
             txtMaNV.Name = "txtMaNV";
             txtMaNV.PasswordChar = '\0';
             txtMaNV.PlaceholderText = "";
             txtMaNV.SelectedText = "";
             txtMaNV.ShadowDecoration.CustomizableEdges = customizableEdges24;
-            txtMaNV.Size = new Size(456, 38);
+            txtMaNV.Size = new Size(365, 30);
             txtMaNV.TabIndex = 11;
             // 
             // guna2Panel4
@@ -373,10 +380,11 @@
             guna2Panel4.Controls.Add(rbtTamNgung);
             guna2Panel4.Controls.Add(guna2HtmlLabel10);
             guna2Panel4.CustomizableEdges = customizableEdges25;
-            guna2Panel4.Location = new Point(636, 70);
+            guna2Panel4.Location = new Point(509, 56);
+            guna2Panel4.Margin = new Padding(2, 2, 2, 2);
             guna2Panel4.Name = "guna2Panel4";
             guna2Panel4.ShadowDecoration.CustomizableEdges = customizableEdges26;
-            guna2Panel4.Size = new Size(334, 92);
+            guna2Panel4.Size = new Size(267, 74);
             guna2Panel4.TabIndex = 10;
             // 
             // rbtDangHoatDong
@@ -387,9 +395,10 @@
             rbtDangHoatDong.CheckedState.FillColor = Color.FromArgb(94, 148, 255);
             rbtDangHoatDong.CheckedState.InnerColor = Color.White;
             rbtDangHoatDong.CheckedState.InnerOffset = -4;
-            rbtDangHoatDong.Location = new Point(150, 51);
+            rbtDangHoatDong.Location = new Point(120, 41);
+            rbtDangHoatDong.Margin = new Padding(2, 2, 2, 2);
             rbtDangHoatDong.Name = "rbtDangHoatDong";
-            rbtDangHoatDong.Size = new Size(174, 29);
+            rbtDangHoatDong.Size = new Size(144, 24);
             rbtDangHoatDong.TabIndex = 12;
             rbtDangHoatDong.Text = "Đang Hoạt Động";
             rbtDangHoatDong.UncheckedState.BorderColor = Color.FromArgb(125, 137, 149);
@@ -405,9 +414,10 @@
             rbtTamNgung.CheckedState.FillColor = Color.FromArgb(94, 148, 255);
             rbtTamNgung.CheckedState.InnerColor = Color.White;
             rbtTamNgung.CheckedState.InnerOffset = -4;
-            rbtTamNgung.Location = new Point(12, 51);
+            rbtTamNgung.Location = new Point(10, 41);
+            rbtTamNgung.Margin = new Padding(2, 2, 2, 2);
             rbtTamNgung.Name = "rbtTamNgung";
-            rbtTamNgung.Size = new Size(132, 29);
+            rbtTamNgung.Size = new Size(109, 24);
             rbtTamNgung.TabIndex = 11;
             rbtTamNgung.Text = "Tạm Ngưng";
             rbtTamNgung.UncheckedState.BorderColor = Color.FromArgb(125, 137, 149);
@@ -418,9 +428,10 @@
             // guna2HtmlLabel10
             // 
             guna2HtmlLabel10.BackColor = Color.Transparent;
-            guna2HtmlLabel10.Location = new Point(12, 18);
+            guna2HtmlLabel10.Location = new Point(10, 14);
+            guna2HtmlLabel10.Margin = new Padding(2, 2, 2, 2);
             guna2HtmlLabel10.Name = "guna2HtmlLabel10";
-            guna2HtmlLabel10.Size = new Size(89, 27);
+            guna2HtmlLabel10.Size = new Size(76, 22);
             guna2HtmlLabel10.TabIndex = 9;
             guna2HtmlLabel10.Text = "Trạng Thái:";
             // 
@@ -430,10 +441,11 @@
             guna2Panel3.Controls.Add(rbtNhanVien);
             guna2Panel3.Controls.Add(guna2HtmlLabel9);
             guna2Panel3.CustomizableEdges = customizableEdges27;
-            guna2Panel3.Location = new Point(636, 182);
+            guna2Panel3.Location = new Point(509, 146);
+            guna2Panel3.Margin = new Padding(2, 2, 2, 2);
             guna2Panel3.Name = "guna2Panel3";
             guna2Panel3.ShadowDecoration.CustomizableEdges = customizableEdges28;
-            guna2Panel3.Size = new Size(334, 91);
+            guna2Panel3.Size = new Size(267, 73);
             guna2Panel3.TabIndex = 7;
             // 
             // rbtQuanLy
@@ -444,9 +456,10 @@
             rbtQuanLy.CheckedState.FillColor = Color.FromArgb(94, 148, 255);
             rbtQuanLy.CheckedState.InnerColor = Color.White;
             rbtQuanLy.CheckedState.InnerOffset = -4;
-            rbtQuanLy.Location = new Point(177, 48);
+            rbtQuanLy.Location = new Point(142, 38);
+            rbtQuanLy.Margin = new Padding(2, 2, 2, 2);
             rbtQuanLy.Name = "rbtQuanLy";
-            rbtQuanLy.Size = new Size(101, 29);
+            rbtQuanLy.Size = new Size(82, 24);
             rbtQuanLy.TabIndex = 11;
             rbtQuanLy.Text = "Quản Lý";
             rbtQuanLy.UncheckedState.BorderColor = Color.FromArgb(125, 137, 149);
@@ -462,9 +475,10 @@
             rbtNhanVien.CheckedState.FillColor = Color.FromArgb(94, 148, 255);
             rbtNhanVien.CheckedState.InnerColor = Color.White;
             rbtNhanVien.CheckedState.InnerOffset = -4;
-            rbtNhanVien.Location = new Point(12, 48);
+            rbtNhanVien.Location = new Point(10, 38);
+            rbtNhanVien.Margin = new Padding(2, 2, 2, 2);
             rbtNhanVien.Name = "rbtNhanVien";
-            rbtNhanVien.Size = new Size(118, 29);
+            rbtNhanVien.Size = new Size(98, 24);
             rbtNhanVien.TabIndex = 10;
             rbtNhanVien.Text = "Nhân Viên";
             rbtNhanVien.UncheckedState.BorderColor = Color.FromArgb(125, 137, 149);
@@ -475,63 +489,70 @@
             // guna2HtmlLabel9
             // 
             guna2HtmlLabel9.BackColor = Color.Transparent;
-            guna2HtmlLabel9.Location = new Point(12, 14);
+            guna2HtmlLabel9.Location = new Point(10, 11);
+            guna2HtmlLabel9.Margin = new Padding(2, 2, 2, 2);
             guna2HtmlLabel9.Name = "guna2HtmlLabel9";
-            guna2HtmlLabel9.Size = new Size(62, 27);
+            guna2HtmlLabel9.Size = new Size(53, 22);
             guna2HtmlLabel9.TabIndex = 9;
             guna2HtmlLabel9.Text = "Vai Trò:";
             // 
             // guna2HtmlLabel7
             // 
             guna2HtmlLabel7.BackColor = Color.Transparent;
-            guna2HtmlLabel7.Location = new Point(581, 304);
+            guna2HtmlLabel7.Location = new Point(465, 243);
+            guna2HtmlLabel7.Margin = new Padding(2, 2, 2, 2);
             guna2HtmlLabel7.Name = "guna2HtmlLabel7";
-            guna2HtmlLabel7.Size = new Size(39, 27);
+            guna2HtmlLabel7.Size = new Size(33, 22);
             guna2HtmlLabel7.TabIndex = 6;
             guna2HtmlLabel7.Text = "SĐT:";
             // 
             // guna2HtmlLabel6
             // 
             guna2HtmlLabel6.BackColor = Color.Transparent;
-            guna2HtmlLabel6.Location = new Point(15, 304);
+            guna2HtmlLabel6.Location = new Point(12, 243);
+            guna2HtmlLabel6.Margin = new Padding(2, 2, 2, 2);
             guna2HtmlLabel6.Name = "guna2HtmlLabel6";
-            guna2HtmlLabel6.Size = new Size(83, 27);
+            guna2HtmlLabel6.Size = new Size(70, 22);
             guna2HtmlLabel6.TabIndex = 5;
             guna2HtmlLabel6.Text = "Ngày Tạo:";
             // 
             // guna2HtmlLabel5
             // 
             guna2HtmlLabel5.BackColor = Color.Transparent;
-            guna2HtmlLabel5.Location = new Point(15, 189);
+            guna2HtmlLabel5.Location = new Point(12, 151);
+            guna2HtmlLabel5.Margin = new Padding(2, 2, 2, 2);
             guna2HtmlLabel5.Name = "guna2HtmlLabel5";
-            guna2HtmlLabel5.Size = new Size(49, 27);
+            guna2HtmlLabel5.Size = new Size(43, 22);
             guna2HtmlLabel5.TabIndex = 4;
             guna2HtmlLabel5.Text = "Email:";
             // 
             // guna2HtmlLabel4
             // 
             guna2HtmlLabel4.BackColor = Color.Transparent;
-            guna2HtmlLabel4.Location = new Point(15, 130);
+            guna2HtmlLabel4.Location = new Point(12, 104);
+            guna2HtmlLabel4.Margin = new Padding(2, 2, 2, 2);
             guna2HtmlLabel4.Name = "guna2HtmlLabel4";
-            guna2HtmlLabel4.Size = new Size(35, 27);
+            guna2HtmlLabel4.Size = new Size(30, 22);
             guna2HtmlLabel4.TabIndex = 3;
             guna2HtmlLabel4.Text = "Tên:";
             // 
             // guna2HtmlLabel3
             // 
             guna2HtmlLabel3.BackColor = Color.Transparent;
-            guna2HtmlLabel3.Location = new Point(15, 246);
+            guna2HtmlLabel3.Location = new Point(12, 197);
+            guna2HtmlLabel3.Margin = new Padding(2, 2, 2, 2);
             guna2HtmlLabel3.Name = "guna2HtmlLabel3";
-            guna2HtmlLabel3.Size = new Size(82, 27);
+            guna2HtmlLabel3.Size = new Size(69, 22);
             guna2HtmlLabel3.TabIndex = 2;
             guna2HtmlLabel3.Text = "Mật Khẩu:";
             // 
             // guna2HtmlLabel2
             // 
             guna2HtmlLabel2.BackColor = Color.Transparent;
-            guna2HtmlLabel2.Location = new Point(15, 75);
+            guna2HtmlLabel2.Location = new Point(12, 60);
+            guna2HtmlLabel2.Margin = new Padding(2, 2, 2, 2);
             guna2HtmlLabel2.Name = "guna2HtmlLabel2";
-            guna2HtmlLabel2.Size = new Size(61, 27);
+            guna2HtmlLabel2.Size = new Size(51, 22);
             guna2HtmlLabel2.TabIndex = 1;
             guna2HtmlLabel2.Text = "Mã NV:";
             // 
@@ -540,9 +561,10 @@
             guna2HtmlLabel1.BackColor = Color.Transparent;
             guna2HtmlLabel1.Font = new Font("Segoe UI", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
             guna2HtmlLabel1.ForeColor = SystemColors.Highlight;
-            guna2HtmlLabel1.Location = new Point(15, 12);
+            guna2HtmlLabel1.Location = new Point(11, 10);
+            guna2HtmlLabel1.Margin = new Padding(2, 2, 2, 2);
             guna2HtmlLabel1.Name = "guna2HtmlLabel1";
-            guna2HtmlLabel1.Size = new Size(158, 47);
+            guna2HtmlLabel1.Size = new Size(135, 39);
             guna2HtmlLabel1.TabIndex = 0;
             guna2HtmlLabel1.Text = "Nhân Viên";
             // 
@@ -552,9 +574,10 @@
             guna2Panel1.CustomizableEdges = customizableEdges31;
             guna2Panel1.Dock = DockStyle.Top;
             guna2Panel1.Location = new Point(0, 0);
+            guna2Panel1.Margin = new Padding(2, 2, 2, 2);
             guna2Panel1.Name = "guna2Panel1";
             guna2Panel1.ShadowDecoration.CustomizableEdges = customizableEdges32;
-            guna2Panel1.Size = new Size(1413, 445);
+            guna2Panel1.Size = new Size(1130, 362);
             guna2Panel1.TabIndex = 2;
             // 
             // dgvDanhSachNV
@@ -582,10 +605,12 @@
             dgvDanhSachNV.Dock = DockStyle.Fill;
             dgvDanhSachNV.GridColor = Color.FromArgb(231, 229, 255);
             dgvDanhSachNV.Location = new Point(0, 0);
+            dgvDanhSachNV.Margin = new Padding(2, 2, 2, 2);
             dgvDanhSachNV.Name = "dgvDanhSachNV";
             dgvDanhSachNV.RowHeadersVisible = false;
             dgvDanhSachNV.RowHeadersWidth = 62;
-            dgvDanhSachNV.Size = new Size(1413, 445);
+            dgvDanhSachNV.RowTemplate.Height = 33;
+            dgvDanhSachNV.Size = new Size(1130, 362);
             dgvDanhSachNV.TabIndex = 0;
             dgvDanhSachNV.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             dgvDanhSachNV.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -612,11 +637,12 @@
             // 
             // frmNhanVien
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1413, 803);
+            ClientSize = new Size(1130, 642);
             Controls.Add(guna2Panel2);
             Controls.Add(guna2Panel1);
+            Margin = new Padding(2, 2, 2, 2);
             Name = "frmNhanVien";
             Text = "frmNhanVien";
             Load += frmNhanVien_Load;

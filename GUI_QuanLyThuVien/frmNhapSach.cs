@@ -18,48 +18,11 @@ namespace GUI_QuanLyThuVien
             LoadData();
             LoadComboMaNhanVien();
             SinhMaTuDong();
-            dgvNhapSach.AutoGenerateColumns = false;
         }
 
         private void LoadData()
         {
-
-
-            dgvNhapSach.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                HeaderText = "Mã Nhập",
-                DataPropertyName = "MaNhap",
-                Name = "MaNhap"
-            });
-
-            dgvNhapSach.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                HeaderText = "Mã Nhân Viên",
-                DataPropertyName = "MaNhanVien",
-                Name = "MaNhanVien"
-            });
-
-            dgvNhapSach.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                HeaderText = "Ngày Nhập",
-                DataPropertyName = "NgayNhap",
-                Name = "NgayNhap"
-            });
-
-            dgvNhapSach.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                HeaderText = "Ghi Chú",
-                DataPropertyName = "GhiChu",
-                Name = "GhiChu"
-            });
-
-            dgvNhapSach.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                HeaderText = "Mã Kho",
-                DataPropertyName = "MaKho",
-                Name = "MaKho"
-            });
-
+            // Load dữ liệu
             dgvNhapSach.DataSource = busNhap.LayTatCaNhapSach();
         }
 
