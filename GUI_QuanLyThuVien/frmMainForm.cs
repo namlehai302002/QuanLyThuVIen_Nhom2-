@@ -87,9 +87,21 @@ namespace GUI_QuanLyThuVien
             openChildForm(new frmSach());
         }
 
+
+
         private void frmMainForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnNhapSach_Click(object sender, EventArgs e)
+        {
+            openChildForm(new frmNhapSach());
+        }
+
+        private void btnXuatSach_Click(object sender, EventArgs e)
+        {
+            openChildForm(new frmXuatSach());
         }
     }
 }
