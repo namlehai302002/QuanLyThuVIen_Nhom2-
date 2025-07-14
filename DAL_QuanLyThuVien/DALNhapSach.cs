@@ -53,11 +53,31 @@ public class DALNhapSach
     {
         using (SqlConnection conn = new SqlConnection(connectionString))
         {
-            string query = "DELETE FROM NhapSach WHERE MaNhap = @MaNhap";
-            SqlCommand cmd = new SqlCommand(query, conn);
-            cmd.Parameters.AddWithValue("@MaNhap", maNhap);
             conn.Open();
-            return cmd.ExecuteNonQuery() > 0;
+            SqlTransaction tran = conn.BeginTransaction();
+
+            try
+            {
+                // 1. Xóa chi tiết nhập trước
+                string deleteChiTiet = "DELETE FROM ChiTietNhapSach WHERE MaNhap = @MaNhap";
+                SqlCommand cmd1 = new SqlCommand(deleteChiTiet, conn, tran);
+                cmd1.Parameters.AddWithValue("@MaNhap", maNhap);
+                cmd1.ExecuteNonQuery();
+
+                // 2. Xóa nhập sách
+                string deleteNhap = "DELETE FROM NhapSach WHERE MaNhap = @MaNhap";
+                SqlCommand cmd2 = new SqlCommand(deleteNhap, conn, tran);
+                cmd2.Parameters.AddWithValue("@MaNhap", maNhap);
+                cmd2.ExecuteNonQuery();
+
+                tran.Commit();
+                return true;
+            }
+            catch
+            {
+                tran.Rollback();
+                return false;
+            }
         }
     }
 

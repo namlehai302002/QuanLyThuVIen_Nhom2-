@@ -25,7 +25,7 @@ namespace DAL_QuanLyThuVien
                     {
                         MaXuat = reader["MaXuat"].ToString(),
                         MaNhanVien = reader["MaNhanVien"].ToString(),
-                        NgayXuat = reader["NgayXuat"] == DBNull.Value ? null : (DateTime?)Convert.ToDateTime(reader["NgayXuat"]),
+                        NgayXuat = Convert.ToDateTime(reader["NgayXuat"]),
                         LyDo = reader["LyDo"].ToString(),
                         MaKho = reader["MaKho"].ToString()
                     });
@@ -42,8 +42,8 @@ namespace DAL_QuanLyThuVien
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@MaXuat", xs.MaXuat);
                 cmd.Parameters.AddWithValue("@MaNhanVien", xs.MaNhanVien);
-                cmd.Parameters.AddWithValue("@NgayXuat", (object)xs.NgayXuat ?? DBNull.Value);
-                cmd.Parameters.AddWithValue("@LyDo", (object)xs.LyDo ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@NgayXuat", xs.NgayXuat);
+                cmd.Parameters.AddWithValue("@LyDo", xs.LyDo ?? (object)DBNull.Value);
                 cmd.Parameters.AddWithValue("@MaKho", xs.MaKho);
                 conn.Open();
                 return cmd.ExecuteNonQuery() > 0;
@@ -54,13 +54,12 @@ namespace DAL_QuanLyThuVien
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = @"UPDATE XuatSach SET MaNhanVien = @MaNhanVien, NgayXuat = @NgayXuat, 
-                                 LyDo = @LyDo, MaKho = @MaKho WHERE MaXuat = @MaXuat";
+                string query = "UPDATE XuatSach SET MaNhanVien=@MaNhanVien, NgayXuat=@NgayXuat, LyDo=@LyDo, MaKho=@MaKho WHERE MaXuat=@MaXuat";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@MaXuat", xs.MaXuat);
                 cmd.Parameters.AddWithValue("@MaNhanVien", xs.MaNhanVien);
-                cmd.Parameters.AddWithValue("@NgayXuat", (object)xs.NgayXuat ?? DBNull.Value);
-                cmd.Parameters.AddWithValue("@LyDo", (object)xs.LyDo ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@NgayXuat", xs.NgayXuat);
+                cmd.Parameters.AddWithValue("@LyDo", xs.LyDo ?? (object)DBNull.Value);
                 cmd.Parameters.AddWithValue("@MaKho", xs.MaKho);
                 conn.Open();
                 return cmd.ExecuteNonQuery() > 0;
@@ -71,11 +70,31 @@ namespace DAL_QuanLyThuVien
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = "DELETE FROM XuatSach WHERE MaXuat = @MaXuat";
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@MaXuat", maXuat);
                 conn.Open();
-                return cmd.ExecuteNonQuery() > 0;
+                SqlTransaction tran = conn.BeginTransaction();
+
+                try
+                {
+                    // 1. Xóa chi tiết xuất sách trước
+                    string deleteChiTiet = "DELETE FROM ChiTietXuatSach WHERE MaXuat = @MaXuat";
+                    SqlCommand cmd1 = new SqlCommand(deleteChiTiet, conn, tran);
+                    cmd1.Parameters.AddWithValue("@MaXuat", maXuat);
+                    cmd1.ExecuteNonQuery();
+
+                    // 2. Xóa xuất sách
+                    string deletePhieu = "DELETE FROM XuatSach WHERE MaXuat = @MaXuat";
+                    SqlCommand cmd2 = new SqlCommand(deletePhieu, conn, tran);
+                    cmd2.Parameters.AddWithValue("@MaXuat", maXuat);
+                    cmd2.ExecuteNonQuery();
+
+                    tran.Commit();
+                    return true;
+                }
+                catch
+                {
+                    tran.Rollback();
+                    return false;
+                }
             }
         }
 
@@ -83,7 +102,7 @@ namespace DAL_QuanLyThuVien
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = "SELECT * FROM XuatSach WHERE MaXuat = @MaXuat";
+                string query = "SELECT * FROM XuatSach WHERE MaXuat=@MaXuat";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@MaXuat", maXuat);
                 conn.Open();
@@ -94,7 +113,7 @@ namespace DAL_QuanLyThuVien
                     {
                         MaXuat = reader["MaXuat"].ToString(),
                         MaNhanVien = reader["MaNhanVien"].ToString(),
-                        NgayXuat = reader["NgayXuat"] == DBNull.Value ? null : (DateTime?)Convert.ToDateTime(reader["NgayXuat"]),
+                        NgayXuat = Convert.ToDateTime(reader["NgayXuat"]),
                         LyDo = reader["LyDo"].ToString(),
                         MaKho = reader["MaKho"].ToString()
                     };

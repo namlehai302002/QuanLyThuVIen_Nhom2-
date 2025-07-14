@@ -6,7 +6,7 @@ using DTO_QuanLyThuVien;
 
 namespace BLL_QuanLyThuVien
 {
-    public class BusChiTietNhapSach
+    public class BUSChiTietNhapSach
     {
         private readonly DALChiTietNhapSach dalCT = new DALChiTietNhapSach();
 

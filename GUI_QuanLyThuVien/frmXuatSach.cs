@@ -22,7 +22,8 @@ namespace GUI_QuanLyThuVien
 
         private void LoadData()
         {
-            dgvXuatSach.DataSource = busXuat.LayTatCaXuatSach();
+            var data = busXuat.LayTatCaXuatSach();
+            dgvXuatSach.DataSource = data;
         }
 
         private void LoadComboMaNhanVien()
@@ -139,5 +140,15 @@ namespace GUI_QuanLyThuVien
                 txtLyDo.Text = row.Cells["LyDo"].Value?.ToString();
             }
         }
+        private void dgvXuatSach_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                string maXuat = dgvXuatSach.Rows[e.RowIndex].Cells["MaXuat"].Value.ToString();
+                frmChiTietXuatSach frm = new frmChiTietXuatSach(maXuat);
+                frm.ShowDialog();
+            }
+        }
+
     }
 }

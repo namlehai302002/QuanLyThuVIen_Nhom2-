@@ -5,7 +5,7 @@ using DTO_QuanLyThuVien;
 
 namespace BLL_QuanLyThuVien
 {
-    public class BusNhapSach
+    public class BUSNhapSach
     {
         private readonly DALNhapSach dalNhap = new DALNhapSach();
 

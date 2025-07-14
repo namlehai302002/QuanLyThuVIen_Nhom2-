@@ -10,30 +10,64 @@ namespace GUI_QuanLyThuVien
     public partial class frmNhapSach : Form
     {
         private readonly BUSNhapSach busNhap = new BUSNhapSach();
-        private readonly BusNhanVien busNV = new BusNhanVien(); // để load combobox mã NV
+        private readonly BusNhanVien busNV = new BusNhanVien(); // Load combobox mã NV
 
         public frmNhapSach()
         {
             InitializeComponent();
             LoadData();
             LoadComboMaNhanVien();
-        }
-
-        private void frmNhapSach_Load(object sender, EventArgs e)
-        {
-
+            SinhMaTuDong();
+            dgvNhapSach.AutoGenerateColumns = false;
         }
 
         private void LoadData()
         {
+
+
+            dgvNhapSach.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Mã Nhập",
+                DataPropertyName = "MaNhap",
+                Name = "MaNhap"
+            });
+
+            dgvNhapSach.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Mã Nhân Viên",
+                DataPropertyName = "MaNhanVien",
+                Name = "MaNhanVien"
+            });
+
+            dgvNhapSach.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Ngày Nhập",
+                DataPropertyName = "NgayNhap",
+                Name = "NgayNhap"
+            });
+
+            dgvNhapSach.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Ghi Chú",
+                DataPropertyName = "GhiChu",
+                Name = "GhiChu"
+            });
+
+            dgvNhapSach.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Mã Kho",
+                DataPropertyName = "MaKho",
+                Name = "MaKho"
+            });
+
             dgvNhapSach.DataSource = busNhap.LayTatCaNhapSach();
         }
 
         private void LoadComboMaNhanVien()
         {
-            var dsNV = busNV.GetNhanVienList(); // Bạn cần có BUSNhanVien.LayTatCaNhanVien()
+            var dsNV = busNV.GetNhanVienList();
             cboMaNV.DataSource = dsNV;
-            cboMaNV.DisplayMember = "TenNhanVien"; // hoặc "MaNhanVien" nếu không có tên
+            cboMaNV.DisplayMember = "TenNhanVien"; // Hoặc MaNhanVien nếu không có tên
             cboMaNV.ValueMember = "MaNhanVien";
         }
 
@@ -47,12 +81,13 @@ namespace GUI_QuanLyThuVien
                     MaNhanVien = cboMaNV.SelectedValue.ToString(),
                     NgayNhap = dtpNgayNhap.Value,
                     GhiChu = txtGhiChu.Text.Trim(),
-                    MaKho = "MK001" // Cứng mã kho hoặc cho textbox nếu có
+                    MaKho = txtMaKho.Text.Trim()
                 };
 
                 busNhap.ThemNhapSach(nhap);
                 MessageBox.Show("Thêm nhập sách thành công!");
                 LoadData();
+                ClearForm();
             }
             catch (Exception ex)
             {
@@ -70,7 +105,7 @@ namespace GUI_QuanLyThuVien
                     MaNhanVien = cboMaNV.SelectedValue.ToString(),
                     NgayNhap = dtpNgayNhap.Value,
                     GhiChu = txtGhiChu.Text.Trim(),
-                    MaKho = "MK001"
+                    MaKho = txtMaKho.Text.Trim()
                 };
 
                 busNhap.CapNhatNhapSach(nhap);
@@ -91,6 +126,7 @@ namespace GUI_QuanLyThuVien
                 busNhap.XoaNhapSach(maNhap);
                 MessageBox.Show("Xóa thành công!");
                 LoadData();
+                ClearForm();
             }
             catch (Exception ex)
             {
@@ -100,11 +136,9 @@ namespace GUI_QuanLyThuVien
 
         private void BtnLamMoi_Click(object sender, EventArgs e)
         {
-            txtMaNhap.Clear();
-            txtGhiChu.Clear();
-            cboMaNV.SelectedIndex = 0;
-            dtpNgayNhap.Value = DateTime.Now;
-            txtMaNhap.Text = busNhap.TaoMaNhapTuDong(); // Gợi ý mã tự động nếu có
+            ClearForm();
+            SinhMaTuDong();
+            LoadData();
         }
 
         private void dgvNhapSach_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -112,26 +146,36 @@ namespace GUI_QuanLyThuVien
             if (e.RowIndex >= 0)
             {
                 var row = dgvNhapSach.Rows[e.RowIndex];
-                txtMaNhap.Text = row.Cells["MaNhap"].Value.ToString();
-                cboMaNV.SelectedValue = row.Cells["MaNhanVien"].Value.ToString();
+                txtMaNhap.Text = row.Cells["MaNhap"].Value?.ToString();
+                cboMaNV.SelectedValue = row.Cells["MaNhanVien"].Value?.ToString();
                 dtpNgayNhap.Value = Convert.ToDateTime(row.Cells["NgayNhap"].Value);
-                txtGhiChu.Text = row.Cells["GhiChu"].Value.ToString();
+                txtGhiChu.Text = row.Cells["GhiChu"].Value?.ToString();
+                txtMaKho.Text = row.Cells["MaKho"].Value?.ToString();
             }
         }
 
-        private void frmNhapSach_Load_1(object sender, EventArgs e)
+        private void dgvNhapSach_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            if (e.RowIndex >= 0)
+            {
+                string maNhap = dgvNhapSach.Rows[e.RowIndex].Cells["MaNhap"].Value.ToString();
+                frmChiTietNhapSach frm = new frmChiTietNhapSach(maNhap);
+                frm.ShowDialog();
+            }
         }
 
-        private void dgvNhapSach_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void ClearForm()
         {
-
+            txtMaNhap.Clear();
+            txtGhiChu.Clear();
+            txtMaKho.Clear();
+            cboMaNV.SelectedIndex = 0;
+            dtpNgayNhap.Value = DateTime.Now;
         }
 
-        private void guna2Button1_Click(object sender, EventArgs e)
+        private void SinhMaTuDong()
         {
-
+            txtMaNhap.Text = busNhap.TaoMaNhapTuDong();
         }
     }
 }

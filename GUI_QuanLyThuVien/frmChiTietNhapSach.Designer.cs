@@ -48,13 +48,13 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             cboMaNhap = new Guna.UI2.WinForms.Guna2ComboBox();
             guna2TextBox1 = new Guna.UI2.WinForms.Guna2TextBox();
             btnTimKiem = new Guna.UI2.WinForms.Guna2Button();
@@ -70,10 +70,10 @@
             guna2HtmlLabel9 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2HtmlLabel10 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
-            dgvCTNhapSach = new Guna.UI2.WinForms.Guna2DataGridView();
+            txtSoLuong = new Guna.UI2.WinForms.Guna2TextBox();
             cboMaSach = new Guna.UI2.WinForms.Guna2ComboBox();
             guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            txtSoLuong = new Guna.UI2.WinForms.Guna2TextBox();
+            dgvCTNhapSach = new Guna.UI2.WinForms.Guna2DataGridView();
             guna2Panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCTNhapSach).BeginInit();
             SuspendLayout();
@@ -339,6 +339,56 @@
             guna2Panel2.Size = new Size(1145, 274);
             guna2Panel2.TabIndex = 42;
             // 
+            // txtSoLuong
+            // 
+            txtSoLuong.CustomizableEdges = customizableEdges19;
+            txtSoLuong.DefaultText = "";
+            txtSoLuong.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtSoLuong.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtSoLuong.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtSoLuong.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtSoLuong.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtSoLuong.Font = new Font("Segoe UI", 9F);
+            txtSoLuong.ForeColor = Color.Black;
+            txtSoLuong.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtSoLuong.Location = new Point(138, 202);
+            txtSoLuong.Margin = new Padding(3, 4, 3, 4);
+            txtSoLuong.Name = "txtSoLuong";
+            txtSoLuong.PasswordChar = '\0';
+            txtSoLuong.PlaceholderText = "";
+            txtSoLuong.SelectedText = "";
+            txtSoLuong.ShadowDecoration.CustomizableEdges = customizableEdges20;
+            txtSoLuong.Size = new Size(473, 30);
+            txtSoLuong.TabIndex = 28;
+            // 
+            // cboMaSach
+            // 
+            cboMaSach.BackColor = Color.Transparent;
+            cboMaSach.CustomizableEdges = customizableEdges21;
+            cboMaSach.DrawMode = DrawMode.OwnerDrawFixed;
+            cboMaSach.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboMaSach.FocusedColor = Color.FromArgb(94, 148, 255);
+            cboMaSach.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            cboMaSach.Font = new Font("Segoe UI", 10F);
+            cboMaSach.ForeColor = Color.FromArgb(68, 88, 112);
+            cboMaSach.ItemHeight = 30;
+            cboMaSach.Location = new Point(137, 152);
+            cboMaSach.Margin = new Padding(2);
+            cboMaSach.Name = "cboMaSach";
+            cboMaSach.ShadowDecoration.CustomizableEdges = customizableEdges22;
+            cboMaSach.Size = new Size(474, 36);
+            cboMaSach.TabIndex = 27;
+            // 
+            // guna2HtmlLabel1
+            // 
+            guna2HtmlLabel1.BackColor = Color.Transparent;
+            guna2HtmlLabel1.Location = new Point(12, 157);
+            guna2HtmlLabel1.Margin = new Padding(2);
+            guna2HtmlLabel1.Name = "guna2HtmlLabel1";
+            guna2HtmlLabel1.Size = new Size(62, 22);
+            guna2HtmlLabel1.TabIndex = 26;
+            guna2HtmlLabel1.Text = "Mã Sach:";
+            // 
             // dgvCTNhapSach
             // 
             dataGridViewCellStyle1.BackColor = Color.White;
@@ -389,56 +439,7 @@
             dgvCTNhapSach.ThemeStyle.RowsStyle.Height = 29;
             dgvCTNhapSach.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             dgvCTNhapSach.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
-            // 
-            // cboMaSach
-            // 
-            cboMaSach.BackColor = Color.Transparent;
-            cboMaSach.CustomizableEdges = customizableEdges21;
-            cboMaSach.DrawMode = DrawMode.OwnerDrawFixed;
-            cboMaSach.DropDownStyle = ComboBoxStyle.DropDownList;
-            cboMaSach.FocusedColor = Color.FromArgb(94, 148, 255);
-            cboMaSach.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            cboMaSach.Font = new Font("Segoe UI", 10F);
-            cboMaSach.ForeColor = Color.FromArgb(68, 88, 112);
-            cboMaSach.ItemHeight = 30;
-            cboMaSach.Location = new Point(137, 152);
-            cboMaSach.Margin = new Padding(2);
-            cboMaSach.Name = "cboMaSach";
-            cboMaSach.ShadowDecoration.CustomizableEdges = customizableEdges22;
-            cboMaSach.Size = new Size(474, 36);
-            cboMaSach.TabIndex = 27;
-            // 
-            // guna2HtmlLabel1
-            // 
-            guna2HtmlLabel1.BackColor = Color.Transparent;
-            guna2HtmlLabel1.Location = new Point(12, 157);
-            guna2HtmlLabel1.Margin = new Padding(2);
-            guna2HtmlLabel1.Name = "guna2HtmlLabel1";
-            guna2HtmlLabel1.Size = new Size(62, 22);
-            guna2HtmlLabel1.TabIndex = 26;
-            guna2HtmlLabel1.Text = "Mã Sach:";
-            // 
-            // txtSoLuong
-            // 
-            txtSoLuong.CustomizableEdges = customizableEdges19;
-            txtSoLuong.DefaultText = "";
-            txtSoLuong.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            txtSoLuong.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            txtSoLuong.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            txtSoLuong.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            txtSoLuong.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtSoLuong.Font = new Font("Segoe UI", 9F);
-            txtSoLuong.ForeColor = Color.Black;
-            txtSoLuong.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtSoLuong.Location = new Point(138, 202);
-            txtSoLuong.Margin = new Padding(3, 4, 3, 4);
-            txtSoLuong.Name = "txtSoLuong";
-            txtSoLuong.PasswordChar = '\0';
-            txtSoLuong.PlaceholderText = "";
-            txtSoLuong.SelectedText = "";
-            txtSoLuong.ShadowDecoration.CustomizableEdges = customizableEdges20;
-            txtSoLuong.Size = new Size(473, 30);
-            txtSoLuong.TabIndex = 28;
+            dgvCTNhapSach.CellClick += dgvCTNhapSach_CellClick;
             // 
             // frmChiTietNhapSach
             // 

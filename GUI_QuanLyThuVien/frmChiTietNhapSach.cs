@@ -8,19 +8,24 @@ namespace GUI_QuanLyThuVien
 {
     public partial class frmChiTietNhapSach : Form
     {
-        private readonly BusChiTietNhapSach busCT = new BusChiTietNhapSach();
-        private readonly BusNhapSach busNhap = new BusNhapSach(); // dùng để load cboMaNhap
+        private readonly BUSChiTietNhapSach busCT = new BUSChiTietNhapSach();
+        private readonly BUSNhapSach busNhap = new BUSNhapSach(); // dùng để load cboMaNhap
         private readonly BUSSach busSach = new BUSSach(); // dùng để load cboMaSach
 
-        public frmChiTietNhapSach()
+        private string maNhapDuocTruyen = ""; // lưu mã nhập được truyền từ form Nhập Sách
+
+        public frmChiTietNhapSach(string maNhap)
         {
             InitializeComponent();
-            LoadData();
+            maNhapDuocTruyen = maNhap;
+            LoadDataTheoMaNhap();
         }
+
 
         private void LoadData()
         {
             dgvCTNhapSach.DataSource = busCT.LayTatCa();
+
             cboMaNhap.DataSource = busNhap.LayTatCaNhapSach();
             cboMaNhap.DisplayMember = "MaNhap";
             cboMaNhap.ValueMember = "MaNhap";
@@ -31,6 +36,34 @@ namespace GUI_QuanLyThuVien
 
             txtMaCTNhap.Text = busCT.TaoMaTuDong();
         }
+
+        private void LoadDataTheoMaNhap()
+        {
+            // Chỉ lấy các dòng chi tiết theo đúng mã nhập
+            var danhSachTheoMa = busCT.LayTatCa()
+                                       .Where(ct => ct.MaNhap == maNhapDuocTruyen)
+                                       .ToList();
+
+            dgvCTNhapSach.DataSource = danhSachTheoMa;
+
+            cboMaNhap.DataSource = busNhap.LayTatCaNhapSach();
+            cboMaNhap.DisplayMember = "MaNhap";
+            cboMaNhap.ValueMember = "MaNhap";
+
+            cboMaSach.DataSource = busSach.LayTatCaSach();
+            cboMaSach.DisplayMember = "MaSach";
+            cboMaSach.ValueMember = "MaSach";
+
+            txtMaCTNhap.Text = busCT.TaoMaTuDong();
+
+            // Gán lại đúng mã nhập
+            if (!string.IsNullOrEmpty(maNhapDuocTruyen))
+            {
+                cboMaNhap.SelectedValue = maNhapDuocTruyen;
+                cboMaNhap.Enabled = false; // khóa combo để không chọn nhầm
+            }
+        }
+
 
         private ChiTietNhapSach LayDuLieuTuForm()
         {
