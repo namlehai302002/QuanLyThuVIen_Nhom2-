@@ -46,6 +46,8 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
@@ -67,6 +69,8 @@
             guna2HtmlLabel9 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2HtmlLabel10 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
+            txtMaKho = new Guna.UI2.WinForms.Guna2TextBox();
+            guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             dgvXuatSach = new Guna.UI2.WinForms.Guna2DataGridView();
             guna2Panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvXuatSach).BeginInit();
@@ -314,6 +318,8 @@
             // 
             // guna2Panel2
             // 
+            guna2Panel2.Controls.Add(txtMaKho);
+            guna2Panel2.Controls.Add(guna2HtmlLabel1);
             guna2Panel2.Controls.Add(dtpNgayXuat);
             guna2Panel2.Controls.Add(cboMaNV);
             guna2Panel2.Controls.Add(guna2TextBox1);
@@ -329,13 +335,45 @@
             guna2Panel2.Controls.Add(guna2HtmlLabel8);
             guna2Panel2.Controls.Add(guna2HtmlLabel9);
             guna2Panel2.Controls.Add(guna2HtmlLabel10);
-            guna2Panel2.CustomizableEdges = customizableEdges19;
+            guna2Panel2.CustomizableEdges = customizableEdges21;
             guna2Panel2.Location = new Point(0, 367);
             guna2Panel2.Margin = new Padding(2);
             guna2Panel2.Name = "guna2Panel2";
-            guna2Panel2.ShadowDecoration.CustomizableEdges = customizableEdges20;
-            guna2Panel2.Size = new Size(1145, 274);
+            guna2Panel2.ShadowDecoration.CustomizableEdges = customizableEdges22;
+            guna2Panel2.Size = new Size(1145, 279);
             guna2Panel2.TabIndex = 42;
+            // 
+            // txtMaKho
+            // 
+            txtMaKho.CustomizableEdges = customizableEdges19;
+            txtMaKho.DefaultText = "";
+            txtMaKho.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtMaKho.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtMaKho.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtMaKho.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtMaKho.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtMaKho.Font = new Font("Segoe UI", 9F);
+            txtMaKho.ForeColor = Color.Black;
+            txtMaKho.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtMaKho.Location = new Point(137, 240);
+            txtMaKho.Margin = new Padding(3, 4, 3, 4);
+            txtMaKho.Name = "txtMaKho";
+            txtMaKho.PasswordChar = '\0';
+            txtMaKho.PlaceholderText = "";
+            txtMaKho.SelectedText = "";
+            txtMaKho.ShadowDecoration.CustomizableEdges = customizableEdges20;
+            txtMaKho.Size = new Size(473, 30);
+            txtMaKho.TabIndex = 27;
+            // 
+            // guna2HtmlLabel1
+            // 
+            guna2HtmlLabel1.BackColor = Color.Transparent;
+            guna2HtmlLabel1.Location = new Point(12, 244);
+            guna2HtmlLabel1.Margin = new Padding(2);
+            guna2HtmlLabel1.Name = "guna2HtmlLabel1";
+            guna2HtmlLabel1.Size = new Size(54, 22);
+            guna2HtmlLabel1.TabIndex = 26;
+            guna2HtmlLabel1.Text = "Mã Kho";
             // 
             // dgvXuatSach
             // 
@@ -387,7 +425,7 @@
             dgvXuatSach.ThemeStyle.RowsStyle.Height = 29;
             dgvXuatSach.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             dgvXuatSach.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
-            dgvXuatSach.CellClick += dgvXuatSach_CellClick_1;
+
             dgvXuatSach.CellDoubleClick += dgvXuatSach_CellDoubleClick;
             // 
             // frmXuatSach
@@ -424,5 +462,7 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel10;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel2;
         private Guna.UI2.WinForms.Guna2DataGridView dgvXuatSach;
+        private Guna.UI2.WinForms.Guna2TextBox txtMaKho;
+        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
     }
 }

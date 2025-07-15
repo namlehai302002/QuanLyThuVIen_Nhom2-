@@ -44,7 +44,7 @@ namespace GUI_QuanLyThuVien
                     MaNhanVien = cboMaNV.SelectedValue.ToString(),
                     NgayXuat = dtpNgayXuat.Value,
                     LyDo = txtLyDo.Text.Trim(),
-                    MaKho = "MK001" // Hoặc cho người dùng chọn
+                    MaKho = txtMaKho.Text.Trim()
                 };
 
                 busXuat.ThemXuatSach(xuat);
@@ -68,7 +68,7 @@ namespace GUI_QuanLyThuVien
                     MaNhanVien = cboMaNV.SelectedValue.ToString(),
                     NgayXuat = dtpNgayXuat.Value,
                     LyDo = txtLyDo.Text.Trim(),
-                    MaKho = "MK001"
+                    MaKho = txtMaKho.Text.Trim()
                 };
 
                 busXuat.CapNhatXuatSach(xuat);
@@ -106,24 +106,13 @@ namespace GUI_QuanLyThuVien
         {
             txtMaXuat.Clear();
             txtLyDo.Clear();
+            txtMaKho.Clear();
             cboMaNV.SelectedIndex = 0;
             dtpNgayXuat.Value = DateTime.Now;
             txtMaXuat.Text = busXuat.TaoMaXuatTuDong();
         }
 
         private void dgvXuatSach_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                var row = dgvXuatSach.Rows[e.RowIndex];
-                txtMaXuat.Text = row.Cells["MaXuat"].Value.ToString();
-                cboMaNV.SelectedValue = row.Cells["MaNhanVien"].Value.ToString();
-                dtpNgayXuat.Value = Convert.ToDateTime(row.Cells["NgayNhap"].Value);
-                txtLyDo.Text = row.Cells["LyDo"].Value.ToString();
-            }
-        }
-
-        private void dgvXuatSach_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
@@ -138,8 +127,10 @@ namespace GUI_QuanLyThuVien
                 }
 
                 txtLyDo.Text = row.Cells["LyDo"].Value?.ToString();
+                txtMaKho.Text = row.Cells["MaKho"].Value?.ToString();
             }
         }
+
         private void dgvXuatSach_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -149,6 +140,5 @@ namespace GUI_QuanLyThuVien
                 frm.ShowDialog();
             }
         }
-
     }
 }
