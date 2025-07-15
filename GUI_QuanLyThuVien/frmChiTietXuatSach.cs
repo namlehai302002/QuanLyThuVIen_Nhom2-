@@ -25,6 +25,7 @@ namespace GUI_QuanLyThuVien
             InitializeComponent();
             maXuatDuocTruyen = maXuat;
             LoadDataTheoMaXuat();
+            dgvCTXuatSach.ColumnHeadersHeight = 40;
         }
 
         private void LoadData()
@@ -40,6 +41,8 @@ namespace GUI_QuanLyThuVien
             cboMaSach.ValueMember = "MaSach";
 
             txtMaCTXuat.Text = busCTX.TaoMaTuDong();
+
+            dgvCTXuatSach.ColumnHeadersHeight = 40;
         }
 
         private void LoadDataTheoMaXuat()

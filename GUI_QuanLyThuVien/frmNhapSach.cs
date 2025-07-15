@@ -24,6 +24,8 @@ namespace GUI_QuanLyThuVien
         {
             // Load dữ liệu
             dgvNhapSach.DataSource = busNhap.LayTatCaNhapSach();
+            dgvNhapSach.ColumnHeadersHeight = 40;
+
         }
 
         private void LoadComboMaNhanVien()

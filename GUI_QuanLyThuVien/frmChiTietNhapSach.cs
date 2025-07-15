@@ -19,6 +19,8 @@ namespace GUI_QuanLyThuVien
             InitializeComponent();
             maNhapDuocTruyen = maNhap;
             LoadDataTheoMaNhap();
+
+            dgvCTNhapSach.ColumnHeadersHeight = 40;
         }
 
 
@@ -35,6 +37,8 @@ namespace GUI_QuanLyThuVien
             cboMaSach.ValueMember = "MaSach";
 
             txtMaCTNhap.Text = busCT.TaoMaTuDong();
+
+            dgvCTNhapSach.ColumnHeadersHeight = 40;
         }
 
         private void LoadDataTheoMaNhap()
@@ -149,6 +153,8 @@ namespace GUI_QuanLyThuVien
                 cboMaSach.SelectedValue = dgvCTNhapSach.Rows[e.RowIndex].Cells["MaSach"].Value.ToString();
                 txtSoLuong.Text = dgvCTNhapSach.Rows[e.RowIndex].Cells["SoLuong"].Value.ToString();
                 txtDonGia.Text = dgvCTNhapSach.Rows[e.RowIndex].Cells["DonGia"].Value.ToString();
+
+                dgvCTNhapSach.ColumnHeadersHeight = 40;
             }
         }
     }

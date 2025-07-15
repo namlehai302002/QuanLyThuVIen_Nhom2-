@@ -24,6 +24,8 @@ namespace GUI_QuanLyThuVien
         {
             var data = busXuat.LayTatCaXuatSach();
             dgvXuatSach.DataSource = data;
+
+            dgvXuatSach.ColumnHeadersHeight = 40;
         }
 
         private void LoadComboMaNhanVien()
