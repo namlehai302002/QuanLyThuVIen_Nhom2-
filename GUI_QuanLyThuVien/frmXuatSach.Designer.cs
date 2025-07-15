@@ -425,7 +425,7 @@
             dgvXuatSach.ThemeStyle.RowsStyle.Height = 29;
             dgvXuatSach.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             dgvXuatSach.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
-
+            dgvXuatSach.CellClick += dgvXuatSach_CellClick;
             dgvXuatSach.CellDoubleClick += dgvXuatSach_CellDoubleClick;
             // 
             // frmXuatSach
