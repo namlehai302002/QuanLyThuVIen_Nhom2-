@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
+using System.Data;
+using DAL_QUANLYTHUVIEN;
 using DTO_QuanLyThuVien;
 using Microsoft.Data.SqlClient;
 
@@ -8,118 +9,119 @@ namespace DAL_QuanLyThuVien
 {
     public class DALXuatSach
     {
-        private string connectionString = @"Data Source=HAHAHA\SQLEXPRESS;Initial Catalog=Xuong_QuanLyThuVien;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
-
-        public List<XuatSach> GetAll()
+        public List<XuatSach> SelectBySql(string sql, List<object> args, CommandType cmdType = CommandType.Text)
         {
             List<XuatSach> list = new List<XuatSach>();
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlDataReader reader = DBUtil.Query(sql, args, cmdType))
             {
-                string query = "SELECT * FROM XuatSach";
-                SqlCommand cmd = new SqlCommand(query, conn);
-                conn.Open();
-                SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    list.Add(new XuatSach
-                    {
-                        MaXuat = reader["MaXuat"].ToString(),
-                        MaNhanVien = reader["MaNhanVien"].ToString(),
-                        NgayXuat = Convert.ToDateTime(reader["NgayXuat"]),
-                        LyDo = reader["LyDo"].ToString(),
-                        MaKho = reader["MaKho"].ToString()
-                    });
+                    list.Add(MapReaderToXuatSach(reader));
                 }
             }
             return list;
         }
 
-        public bool Insert(XuatSach xs)
+        public List<XuatSach> SelectAll()
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            string sql = "SELECT * FROM XuatSach";
+            return SelectBySql(sql, new List<object>());
+        }
+
+        public void InsertXuatSach(XuatSach xs)
+        {
+            string sql = @"INSERT INTO XuatSach (MaXuat, MaNhanVien, NgayXuat, LyDo, MaKho)
+                           VALUES (@0, @1, @2, @3, @4)";
+            List<object> parameters = new List<object>
             {
-                string query = "INSERT INTO XuatSach VALUES (@MaXuat, @MaNhanVien, @NgayXuat, @LyDo, @MaKho)";
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@MaXuat", xs.MaXuat);
-                cmd.Parameters.AddWithValue("@MaNhanVien", xs.MaNhanVien);
-                cmd.Parameters.AddWithValue("@NgayXuat", xs.NgayXuat);
-                cmd.Parameters.AddWithValue("@LyDo", xs.LyDo ?? (object)DBNull.Value);
-                cmd.Parameters.AddWithValue("@MaKho", xs.MaKho);
-                conn.Open();
-                return cmd.ExecuteNonQuery() > 0;
+                xs.MaXuat,
+                xs.MaNhanVien,
+                xs.NgayXuat,
+                xs.LyDo ?? (object)DBNull.Value,
+                xs.MaKho
+            };
+
+            DBUtil.Update(sql, parameters);
+        }
+
+        public string UpdateXuatSach(XuatSach xs)
+        {
+            string sql = @"UPDATE XuatSach 
+                           SET MaNhanVien = @0,
+                               NgayXuat = @1,
+                               LyDo = @2,
+                               MaKho = @3
+                           WHERE MaXuat = @4";
+            List<object> parameters = new List<object>
+            {
+                xs.MaNhanVien,
+                xs.NgayXuat,
+                xs.LyDo ?? (object)DBNull.Value,
+                xs.MaKho,
+                xs.MaXuat
+            };
+
+            try
+            {
+                int rows = DBUtil.Update(sql, parameters);
+                if (rows == 0)
+                    return "Không tìm thấy phiếu xuất để cập nhật.";
+                return "";
+            }
+            catch (Exception ex)
+            {
+                return "Lỗi: " + ex.Message;
             }
         }
 
-        public bool Update(XuatSach xs)
+        public string DeleteXuatSach(string maXuat)
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                string query = "UPDATE XuatSach SET MaNhanVien=@MaNhanVien, NgayXuat=@NgayXuat, LyDo=@LyDo, MaKho=@MaKho WHERE MaXuat=@MaXuat";
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@MaXuat", xs.MaXuat);
-                cmd.Parameters.AddWithValue("@MaNhanVien", xs.MaNhanVien);
-                cmd.Parameters.AddWithValue("@NgayXuat", xs.NgayXuat);
-                cmd.Parameters.AddWithValue("@LyDo", xs.LyDo ?? (object)DBNull.Value);
-                cmd.Parameters.AddWithValue("@MaKho", xs.MaKho);
-                conn.Open();
-                return cmd.ExecuteNonQuery() > 0;
+                // Xóa chi tiết trước
+                string sqlChiTiet = "DELETE FROM ChiTietXuatSach WHERE MaXuat = @0";
+                DBUtil.Update(sqlChiTiet, new List<object> { maXuat });
+
+                // Xóa phiếu xuất
+                string sql = "DELETE FROM XuatSach WHERE MaXuat = @0";
+                DBUtil.Update(sql, new List<object> { maXuat });
+
+                return "";
             }
-        }
-
-        public bool Delete(string maXuat)
-        {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            catch (Exception ex)
             {
-                conn.Open();
-                SqlTransaction tran = conn.BeginTransaction();
-
-                try
-                {
-                    // 1. Xóa chi tiết xuất sách trước
-                    string deleteChiTiet = "DELETE FROM ChiTietXuatSach WHERE MaXuat = @MaXuat";
-                    SqlCommand cmd1 = new SqlCommand(deleteChiTiet, conn, tran);
-                    cmd1.Parameters.AddWithValue("@MaXuat", maXuat);
-                    cmd1.ExecuteNonQuery();
-
-                    // 2. Xóa xuất sách
-                    string deletePhieu = "DELETE FROM XuatSach WHERE MaXuat = @MaXuat";
-                    SqlCommand cmd2 = new SqlCommand(deletePhieu, conn, tran);
-                    cmd2.Parameters.AddWithValue("@MaXuat", maXuat);
-                    cmd2.ExecuteNonQuery();
-
-                    tran.Commit();
-                    return true;
-                }
-                catch
-                {
-                    tran.Rollback();
-                    return false;
-                }
+                return "Lỗi: " + ex.Message;
             }
         }
 
         public XuatSach GetByMa(string maXuat)
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            string sql = "SELECT * FROM XuatSach WHERE MaXuat = @0";
+            List<XuatSach> list = SelectBySql(sql, new List<object> { maXuat });
+            return list.Count > 0 ? list[0] : null;
+        }
+
+        public List<XuatSach> SearchXuatSach(string keyword)
+        {
+            string sql = @"SELECT * FROM XuatSach 
+                           WHERE MaXuat LIKE @0 
+                              OR MaNhanVien LIKE @0 
+                              OR MaKho LIKE @0 
+                              OR LyDo LIKE @0";
+            List<object> parameters = new List<object> { "%" + keyword + "%" };
+            return SelectBySql(sql, parameters);
+        }
+
+        private XuatSach MapReaderToXuatSach(SqlDataReader reader)
+        {
+            return new XuatSach
             {
-                string query = "SELECT * FROM XuatSach WHERE MaXuat=@MaXuat";
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@MaXuat", maXuat);
-                conn.Open();
-                SqlDataReader reader = cmd.ExecuteReader();
-                if (reader.Read())
-                {
-                    return new XuatSach
-                    {
-                        MaXuat = reader["MaXuat"].ToString(),
-                        MaNhanVien = reader["MaNhanVien"].ToString(),
-                        NgayXuat = Convert.ToDateTime(reader["NgayXuat"]),
-                        LyDo = reader["LyDo"].ToString(),
-                        MaKho = reader["MaKho"].ToString()
-                    };
-                }
-            }
-            return null;
+                MaXuat = reader["MaXuat"].ToString(),
+                MaNhanVien = reader["MaNhanVien"].ToString(),
+                NgayXuat = reader["NgayXuat"] != DBNull.Value ? Convert.ToDateTime(reader["NgayXuat"]) : DateTime.MinValue,
+                LyDo = reader["LyDo"]?.ToString(),
+                MaKho = reader["MaKho"]?.ToString()
+            };
         }
     }
 }

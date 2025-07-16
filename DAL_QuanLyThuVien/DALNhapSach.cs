@@ -1,124 +1,127 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
+using DAL_QUANLYTHUVIEN;
 using DTO_QuanLyThuVien;
 using Microsoft.Data.SqlClient;
 
-public class DALNhapSach
+namespace DAL_QuanLyThuVien
 {
-    private string connectionString = @"Data Source=HAHAHA\SQLEXPRESS;Initial Catalog=Xuong_QuanLyThuVien;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
-
-    public List<NhapSach> GetAll()
+    public class DALNhapSach
     {
-        List<NhapSach> list = new List<NhapSach>();
-        using (SqlConnection conn = new SqlConnection(connectionString))
+        public List<NhapSach> SelectBySql(string sql, List<object> args, CommandType cmdType = CommandType.Text)
         {
-            string query = "SELECT * FROM NhapSach";
-            SqlCommand cmd = new SqlCommand(query, conn);
-            conn.Open();
-            SqlDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
+            List<NhapSach> list = new List<NhapSach>();
+            using (SqlDataReader reader = DBUtil.Query(sql, args, cmdType))
             {
-                list.Add(new NhapSach
+                while (reader.Read())
                 {
-                    MaNhap = reader["MaNhap"].ToString(),
-                    MaNhanVien = reader["MaNhanVien"].ToString(),
-                    NgayNhap = Convert.ToDateTime(reader["NgayNhap"]),
-                    GhiChu = reader["GhiChu"].ToString(),
-                    MaKho = reader["MaKho"].ToString()
-                });
+                    list.Add(MapReaderToNhapSach(reader));
+                }
             }
+            return list;
         }
-        return list;
-    }
 
-    public bool Insert(NhapSach ns)
-    {
-        using (SqlConnection conn = new SqlConnection(connectionString))
+        public List<NhapSach> SelectAll()
         {
-            string query = "INSERT INTO NhapSach VALUES (@MaNhap, @MaNhanVien, @NgayNhap, @GhiChu, @MaKho)";
-            SqlCommand cmd = new SqlCommand(query, conn);
-            cmd.Parameters.AddWithValue("@MaNhap", ns.MaNhap);
-            cmd.Parameters.AddWithValue("@MaNhanVien", ns.MaNhanVien);
-            cmd.Parameters.AddWithValue("@NgayNhap", ns.NgayNhap);
-            cmd.Parameters.AddWithValue("@GhiChu", (object)ns.GhiChu ?? DBNull.Value);
-            cmd.Parameters.AddWithValue("@MaKho", ns.MaKho);
-            conn.Open();
-            return cmd.ExecuteNonQuery() > 0;
+            string sql = "SELECT * FROM NhapSach";
+            return SelectBySql(sql, new List<object>());
         }
-    }
 
-    public bool Delete(string maNhap)
-    {
-        using (SqlConnection conn = new SqlConnection(connectionString))
+        public NhapSach GetByMa(string maNhap)
         {
-            conn.Open();
-            SqlTransaction tran = conn.BeginTransaction();
+            string sql = "SELECT * FROM NhapSach WHERE MaNhap = @0";
+            List<NhapSach> list = SelectBySql(sql, new List<object> { maNhap });
+            return list.Count > 0 ? list[0] : null;
+        }
+
+        public void InsertNhapSach(NhapSach ns)
+        {
+            string sql = @"INSERT INTO NhapSach (MaNhap, MaNhanVien, NgayNhap, GhiChu, MaKho) 
+                           VALUES (@0, @1, @2, @3, @4)";
+            List<object> parameters = new List<object>
+            {
+                ns.MaNhap,
+                ns.MaNhanVien,
+                ns.NgayNhap,
+                ns.GhiChu ?? (object)DBNull.Value,
+                ns.MaKho
+            };
+
+            DBUtil.Update(sql, parameters);
+        }
+
+        public string UpdateNhapSach(NhapSach ns)
+        {
+            string sql = @"UPDATE NhapSach 
+                           SET MaNhanVien = @0,
+                               NgayNhap = @1,
+                               GhiChu = @2,
+                               MaKho = @3
+                           WHERE MaNhap = @4";
+            List<object> parameters = new List<object>
+            {
+                ns.MaNhanVien,
+                ns.NgayNhap,
+                ns.GhiChu ?? (object)DBNull.Value,
+                ns.MaKho,
+                ns.MaNhap
+            };
 
             try
             {
-                // 1. Xóa chi tiết nhập trước
-                string deleteChiTiet = "DELETE FROM ChiTietNhapSach WHERE MaNhap = @MaNhap";
-                SqlCommand cmd1 = new SqlCommand(deleteChiTiet, conn, tran);
-                cmd1.Parameters.AddWithValue("@MaNhap", maNhap);
-                cmd1.ExecuteNonQuery();
-
-                // 2. Xóa nhập sách
-                string deleteNhap = "DELETE FROM NhapSach WHERE MaNhap = @MaNhap";
-                SqlCommand cmd2 = new SqlCommand(deleteNhap, conn, tran);
-                cmd2.Parameters.AddWithValue("@MaNhap", maNhap);
-                cmd2.ExecuteNonQuery();
-
-                tran.Commit();
-                return true;
+                int rows = DBUtil.Update(sql, parameters);
+                if (rows == 0)
+                    return "Không tìm thấy phiếu nhập để cập nhật.";
+                return "";
             }
-            catch
+            catch (Exception ex)
             {
-                tran.Rollback();
-                return false;
+                return "Lỗi: " + ex.Message;
             }
         }
-    }
 
-    public bool Update(NhapSach ns)
-    {
-        using (SqlConnection conn = new SqlConnection(connectionString))
+        public string DeleteNhapSach(string maNhap)
         {
-            string query = @"UPDATE NhapSach SET MaNhanVien=@MaNhanVien, NgayNhap=@NgayNhap, 
-                            GhiChu=@GhiChu, MaKho=@MaKho WHERE MaNhap=@MaNhap";
-            SqlCommand cmd = new SqlCommand(query, conn);
-            cmd.Parameters.AddWithValue("@MaNhap", ns.MaNhap);
-            cmd.Parameters.AddWithValue("@MaNhanVien", ns.MaNhanVien);
-            cmd.Parameters.AddWithValue("@NgayNhap", ns.NgayNhap);
-            cmd.Parameters.AddWithValue("@GhiChu", (object)ns.GhiChu ?? DBNull.Value);
-            cmd.Parameters.AddWithValue("@MaKho", ns.MaKho);
-            conn.Open();
-            return cmd.ExecuteNonQuery() > 0;
-        }
-    }
-    public NhapSach GetByMa(string maNhap)
-    {
-        using (SqlConnection conn = new SqlConnection(connectionString))
-        {
-            string query = "SELECT * FROM NhapSach WHERE MaNhap = @MaNhap";
-            SqlCommand cmd = new SqlCommand(query, conn);
-            cmd.Parameters.AddWithValue("@MaNhap", maNhap);
-            conn.Open();
-            SqlDataReader reader = cmd.ExecuteReader();
-            if (reader.Read())
+            try
             {
-                return new NhapSach
-                {
-                    MaNhap = reader["MaNhap"].ToString(),
-                    MaNhanVien = reader["MaNhanVien"].ToString(),
-                    NgayNhap = Convert.ToDateTime(reader["NgayNhap"]),
-                    GhiChu = reader["GhiChu"].ToString(),
-                    MaKho = reader["MaKho"].ToString()
-                };
+                // Xóa chi tiết nhập sách trước
+                string sqlChiTiet = "DELETE FROM ChiTietNhapSach WHERE MaNhap = @0";
+                DBUtil.Update(sqlChiTiet, new List<object> { maNhap });
+
+                // Xóa nhập sách
+                string sql = "DELETE FROM NhapSach WHERE MaNhap = @0";
+                DBUtil.Update(sql, new List<object> { maNhap });
+
+                return "";
+            }
+            catch (Exception ex)
+            {
+                return "Lỗi: " + ex.Message;
             }
         }
-        return null;
-    }
 
+        public List<NhapSach> Search(string keyword)
+        {
+            string sql = @"SELECT * FROM NhapSach 
+                           WHERE MaNhap LIKE @0 
+                              OR MaNhanVien LIKE @0 
+                              OR MaKho LIKE @0 
+                              OR GhiChu LIKE @0";
+            List<object> parameters = new List<object> { "%" + keyword + "%" };
+            return SelectBySql(sql, parameters);
+        }
+
+        private NhapSach MapReaderToNhapSach(SqlDataReader reader)
+        {
+            return new NhapSach
+            {
+                MaNhap = reader["MaNhap"].ToString(),
+                MaNhanVien = reader["MaNhanVien"].ToString(),
+                NgayNhap = Convert.ToDateTime(reader["NgayNhap"]),
+                GhiChu = reader["GhiChu"]?.ToString(),
+                MaKho = reader["MaKho"].ToString()
+            };
+        }
+    }
 }

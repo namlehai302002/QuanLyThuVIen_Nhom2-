@@ -12,7 +12,7 @@ namespace BLL_QuanLyThuVien
 
         public List<XuatSach> LayTatCaXuatSach()
         {
-            return dal.GetAll();
+            return dal.SelectAll();
         }
 
         public XuatSach LayTheoMa(string maXuat)
@@ -24,26 +24,37 @@ namespace BLL_QuanLyThuVien
         {
             if (LayTheoMa(xs.MaXuat) != null)
                 throw new Exception("Mã xuất đã tồn tại.");
-            dal.Insert(xs);
+
+            dal.InsertXuatSach(xs);
         }
 
         public void CapNhatXuatSach(XuatSach xs)
         {
-            dal.Update(xs);
+            string error = dal.UpdateXuatSach(xs);
+            if (!string.IsNullOrEmpty(error))
+                throw new Exception(error);
         }
 
         public void XoaXuatSach(string maXuat)
         {
-            if (!dal.Delete(maXuat))
-                throw new Exception("Không tìm thấy hoặc không thể xóa mã xuất.");
+            string error = dal.DeleteXuatSach(maXuat);
+            if (!string.IsNullOrEmpty(error))
+                throw new Exception(error);
+        }
+
+        public List<XuatSach> TimKiemXuatSach(string keyword)
+        {
+            return dal.SearchXuatSach(keyword);
         }
 
         public string TaoMaXuatTuDong()
         {
             var list = LayTatCaXuatSach();
             if (list.Count == 0) return "X001";
-            string max = list.Max(x => x.MaXuat);
-            int so = int.Parse(max.Substring(1)) + 1;
+
+            // Tìm mã lớn nhất và tăng số
+            string maxMa = list.Max(x => x.MaXuat);
+            int so = int.Parse(maxMa.Substring(1)) + 1;
             return "X" + so.ToString("D3");
         }
     }
